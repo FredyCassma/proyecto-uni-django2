@@ -1,0 +1,44 @@
+{% extends "inicio/encabezado.html" %}
+{% load static %}
+{% block titulo %}Comentarios{% endblock %}
+
+{% block imagen_tag %}
+<img src="{% static 'inicio/img/home.png' %}" alt="Usuario">
+{% endblock %}
+
+{% block span %}Comentarios{% endblock %}
+
+{% block encabezado %}
+<div class="page-header">
+    <div class="page-title">
+        <h3>Comentarios <small>Lista de Comentarios</small></h3>
+    </div>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Mensaje</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for comentario1 in comentarios %}
+        <tr>
+            <td class="text-semibold">{{ comentario1.usuario }}</td>
+            <td class="muted">{{ comentario1.mensaje }}</td>
+            <td class="muted">
+            <a href="{%url 'Consultar' comentario1.id%}">Editar</a>
+            </td>
+            <td class="text-center">
+                <a href="{%url 'Eliminar' comentario1.id%}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

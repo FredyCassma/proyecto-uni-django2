@@ -1,0 +1,44 @@
+{% extends "inicio/encabezado.html" %}
+{% load static %}
+{% block titulo %}CONTACTO{% endblock %}
+
+{% block imagen_tag %}
+<img src="{% static 'inicio/img/contacto.png' %}" alt="Usuario">
+{% endblock %}
+
+{% block span %}Contacto+{% endblock %}
+
+{% block encabezado %}
+<div class="page-header">
+    <div class="page-title">
+        <h3>Contáctanos <small>Modificando comentario</small></h3>
+    </div>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="page-content">
+    <form class="form-horizontal" action="{% url 'Editar' comentario.id %}" method="POST" role="form">
+        {%csrf_token%}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label text-right">Nombre:</label>
+                    <div class="col-sm-10">
+                        <input value={{comentario.usuario}} name="usuario" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label text-right">Mensaje:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="mensaje" rows="10" cols="50">{{comentario.mensaje}}</textarea>
+                    </div>
+                </div>
+                <div class="form-actions text-right">
+                    <input type="submit" value="Enviar" class="btn btn-primary">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
